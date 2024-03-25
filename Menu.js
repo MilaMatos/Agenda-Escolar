@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image } from 'react-native';
 //import Carousel from 'react-native-snap-carousel';
+import { NavigationContainer } from '@react-navigation/native';
 
 const Menu = ({ navigation }) => {
+
   const usuarioLogado = "Fulano";
   const serieUsuario = "Infantil IV";
 
@@ -20,6 +22,7 @@ const Menu = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+
       {/* Primeira área: faixa cinza claro no topo */}
       <View style={styles.header}>
         <Image source={require('./assets/logo_esi.png')} style={styles.logo} />
@@ -57,12 +60,16 @@ const Menu = ({ navigation }) => {
           <Text style={styles.buttonText}>Atividades</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.button, { marginTop: 15 }]}>
+        <TouchableOpacity
+        onPress={() => navigation.navigate('Comunicados')}  
+        style={[styles.button, { marginTop: 15 }]}>
           <Image source={require('./assets/atencao.png')} style={styles.buttonImage}/>
           <Text style={styles.buttonText}>Comunicados</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.button, { marginTop: 15 }]}>
+        <TouchableOpacity 
+        onPress={() => navigation.navigate('Eventos')}
+        style={[styles.button, { marginTop: 15 }]}>
           <Image source={require('./assets/evento.png')} style={styles.buttonImage}/>
           <Text style={styles.buttonText}>Eventos</Text>
         </TouchableOpacity>
