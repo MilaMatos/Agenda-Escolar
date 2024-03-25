@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import React, { useState, useCallback } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Linking } from 'react-native';
 
 const TelaSecundaria = ({ navigation }) => {
   const [login, setLogin] = useState('');
@@ -13,6 +13,10 @@ const TelaSecundaria = ({ navigation }) => {
       alert('Login ou senha incorretos');
     }
   };
+
+  const linkExt = useCallback(() => {
+    Linking.openURL("https://wa.me/+55889997650540")
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -45,7 +49,7 @@ const TelaSecundaria = ({ navigation }) => {
       {/* Parte de Problemas no Login (20% da tela) */}
       <View style={[styles.section, { flex: 2 }]}>
         <Text>Algum problema no login?</Text>
-        <TouchableOpacity style={styles.contactButton}>
+        <TouchableOpacity style={styles.contactButton} onPress={linkExt}>
           <Text style={styles.contactButtonText}>Entre em contato com a coordenação</Text>
         </TouchableOpacity>
       </View>
