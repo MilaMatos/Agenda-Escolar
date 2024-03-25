@@ -1,65 +1,92 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
-const Atividade = ({ navigation }) => {
+const Agenda = ({ navigation }) => {
+  // Definir as informações do cabeçalho e do conteúdo do dia
+  const cabecalho = {
+    data: '18/03',
+    diaSemana: 'Segunda-Feira',
+  };
+
+  const conteudoDia = {
+    titulo: 'Conteúdo do dia:',
+    descricao: 'Em Matemática estudamos tabuada e divisão. \nEm Inglês o verbo "To be".',
+  };
+
+  // Definir as informações das atividades
+  const atividades = [
+    {
+      materia: 'Matemática',
+      tarefas: [
+        'Página 47 à 49',
+        'Página 50 à 52',
+      ],
+      cor: 'blue',
+    },
+    {
+      materia: 'Português',
+      tarefas: [
+        'Atividade na folha',
+      ],
+      cor: 'red',
+    },
+    {
+      materia: 'Ciências',
+      tarefas: [
+        'Atividade no caderno (10 questões)',
+        'Atividade no caderno (10 questões)',
+        'Atividade no caderno (10 questões)',
+        'Atividade no caderno (10 questões)',
+      ],
+      cor: 'green',
+    },
+  ];
+
   return (
-    <View style={styles.container}>
-      {/* Parte superior */}
-      <View style={styles.header}>
-        <Text style={styles.data}>18/03</Text>
-        <Text style={styles.diaSemana}>Segunda-Feira</Text>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        {/* Parte superior */}
+        <View style={styles.header}>
+          <Text style={styles.data}>{cabecalho.data}</Text>
+          <Text style={styles.diaSemana}>{cabecalho.diaSemana}</Text>
+        </View>
+
+        {/* Parte do resumo das atividades */}
+        <View style={styles.resumo}>
+          <Text style={styles.resumoTitle}>{conteudoDia.titulo}</Text>
+          <Text style={styles.resumoTexto}>{conteudoDia.descricao}</Text>
+        </View>
+
+        {/* Parte das atividades separadas por matérias */}
+        {atividades.map((atividade, index) => (
+          <View style={styles.materiaContainer} key={index}>
+            <Text style={styles.materiaTitle}>{atividade.materia}</Text>
+            {atividade.tarefas.map((tarefa, index) => (
+              <BouncyCheckbox
+                key={index}
+                padding={5}
+                size={25}
+                fillColor={atividade.cor}
+                text={tarefa}
+                innerIconStyle={{ borderWidth: 2 }}
+                onPress={(isChecked: boolean) => {}}
+              />
+            ))}
+          </View>
+        ))}
       </View>
-
-      {/* Parte do resumo das atividades */}
-      <View style={styles.resumo}>
-        <Text style={styles.resumoTitle}>Conteúdo do dia:</Text>
-        <Text style={styles.resumoTexto}>
-          Em Matemática estudamos tabuada e divisão.
-          {"\n"}
-          Em Inglês o verbo "To be".
-        </Text>
-      </View>
-
-      {/* Parte das atividades separadas por matérias */}
-      <View style={styles.materiaContainer}>
-        <Text style={styles.materiaTitle}>Matemática</Text>
-          
-          <BouncyCheckbox
-            padding={5}
-            size={25}
-            fillColor="blue"
-            //unfillColor="#FFFFFF"
-            text="Página 47 à 49"
-            //iconStyle={{ borderColor: "red" }}
-            innerIconStyle={{ borderWidth: 2 }}
-            //textStyle={{ fontFamily: "JosefinSans-Regular" }}
-            onPress={(isChecked: boolean) => {}}
-          />
-
-          <BouncyCheckbox
-            padding={5}
-            size={25}
-            fillColor="blue"
-            //unfillColor="#FFFFFF"
-            text="Página 47 à 49"
-            //iconStyle={{ borderColor: "red" }}
-            innerIconStyle={{ borderWidth: 2 }}
-            //textStyle={{ fontFamily: "JosefinSans-Regular" }}
-            onPress={(isChecked: boolean) => {}}
-          />
-        
-      </View>
-
-      {/* Adicione mais matérias conforme necessário */}
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+    paddingBottom: 20, // Para evitar que o conteúdo fique muito próximo da borda inferior
+  },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     padding: 10,
   },
   header: {
@@ -74,6 +101,10 @@ const styles = StyleSheet.create({
   },
   resumo: {
     marginTop: 20,
+    borderWidth: 1.5,
+    borderColor: 'black',
+    padding: 10,
+    borderRadius: 5,
   },
   resumoTitle: {
     fontSize: 20,
@@ -85,6 +116,10 @@ const styles = StyleSheet.create({
   },
   materiaContainer: {
     marginTop: 20,
+    borderWidth: 1,
+    borderColor: 'gray',
+    padding: 10,
+    borderRadius: 5,
   },
   materiaTitle: {
     fontSize: 18,
@@ -93,4 +128,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Atividade;
+export default Agenda;
