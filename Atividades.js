@@ -6,6 +6,7 @@ const Agenda = ({ navigation }) => {
   const handleItemClick = (day) => {
     console.log(`Clicou em ${day}`);
     // Aqui você pode adicionar a lógica para navegar para a tela de detalhes da atividade do dia
+    navigation.navigate('Agenda')
   };
 
   return (
@@ -15,7 +16,7 @@ const Agenda = ({ navigation }) => {
           <TouchableOpacity
             key={index}
             style={styles.item}
-            onPress={() => navigation.navigate('Agenda')}
+            onPress={() => handleItemClick()}
           >
             <Text style={styles.itemText}>{`Segunda - ${index + 1}/03`}</Text>
           </TouchableOpacity>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 
-const EventosPage = () => {
+const EventosPage = ({ navigation }) => {
   // Dados dos eventos (exemplo)
   const eventos = [
     { id: 1, titulo: 'Evento 1', data: '21/03/2024' },
@@ -12,9 +12,9 @@ const EventosPage = () => {
   ];
 
   // Função para lidar com o pressionar de um evento
-  const handleEventoPress = (evento) => {
+  const handleEventoPress = () => {
     // Aqui você pode adicionar a lógica para abrir o evento ou fazer o que for necessário
-    console.log('Evento pressionado:', evento);
+    navigation.navigate('Evento')
   };
 
   return (
@@ -24,7 +24,7 @@ const EventosPage = () => {
           <TouchableOpacity
             key={evento.id}
             style={styles.button}
-            onPress={() => handleEventoPress(evento)}
+            onPress={() => handleEventoPress()}
           >
             <Text style={styles.buttonText}>{evento.titulo}</Text>
             <Text style={styles.buttonSubText}>{evento.data}</Text>

@@ -8,6 +8,7 @@ import Agenda from './Agenda';
 import Atividades from './Atividades';
 import ComunicadosPage from './Comunicados';
 import EventosPage from './Eventos';
+import Evento from './Evento';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,7 @@ const App = () => {
         <Stack.Screen name="Agenda" component={Agenda} />
         <Stack.Screen name="Comunicados" component={ComunicadosPage} />
         <Stack.Screen name="Eventos" component={EventosPage} />
+        <Stack.Screen name="Evento" component={Evento} />
 
         
       </Stack.Navigator>
