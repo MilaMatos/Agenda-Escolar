@@ -16,3 +16,6 @@ Para executar o aplicativo , siga as instruções abaixo:
 ```
 npm run web
 ```
+### Autores
+- Este aplicativo foi desenvolvido por André Castro, Camila Vanessa, Vinicius Inácio e Lucas Silva.
+- Este trabalho faz parte do curso de Programação para Dispositivos Móveis da Universidade Federal do Cariri.
